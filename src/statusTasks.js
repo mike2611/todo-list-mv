@@ -21,10 +21,22 @@ function changeStatus(check) {
   saveStatus();
 }
 
+function checkStatus() {
+  if (JSON.parse(window.localStorage.getItem('tasks'))) {
+    arrTasks = JSON.parse(window.localStorage.getItem('tasks'));
+    arrTasks.forEach((task) => {
+      const check = document.getElementById(task.index);
+      check.checked = task.completed;
+      changeStatus(check);
+    });
+  }
+}
+
 export function addListeners() {
   const checks = document.querySelectorAll('.checks');
 
   checks.forEach((check) => {
     check.addEventListener('change', () => changeStatus(check));
+    checkStatus();
   });
 }

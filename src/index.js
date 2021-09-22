@@ -29,7 +29,12 @@ function populateTask(arr) {
   }
   orderArray.forEach((task) => {
     const li = document.createElement('li');
-    li.innerHTML = `${task.description} <i class="bi bi-three-dots-vertical"></i>`;
+    li.innerHTML = ` 
+    <div class  = "d-flex-between">
+      <input type="checkbox" id="${orderArray.index}" value="${orderArray.index}">
+      ${task.description}
+    </div> 
+    <i class="bi bi-three-dots-vertical"></i>`;
     li.classList.add('tasks', 'd-flex-between');
     ul.appendChild(li);
   });

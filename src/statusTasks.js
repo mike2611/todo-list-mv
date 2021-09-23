@@ -1,11 +1,12 @@
 let arrTasks = [];
 
-export function getTasks(newTasks) {
-  arrTasks = newTasks;
-}
-
 export function saveStatus() {
   window.localStorage.setItem('tasks', JSON.stringify(arrTasks));
+}
+
+export function getTasks(newTasks) {
+  arrTasks = newTasks;
+  saveStatus();
 }
 
 function changeStatus(check) {

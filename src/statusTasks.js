@@ -1,6 +1,6 @@
 let arrTasks = [];
 
-export function getTasks(newTasks) {
+export function getStatusTasks(newTasks) {
   arrTasks = newTasks;
 }
 

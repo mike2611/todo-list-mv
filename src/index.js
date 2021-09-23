@@ -1,5 +1,6 @@
 import './style.css';
-import { addListeners, getTasks } from './statusTasks.js';
+import { addListeners, getStatusTasks } from './statusTasks.js';
+import addDrag from './dragDrop.js';
 
 require('bootstrap-icons/font/bootstrap-icons.css');
 
@@ -39,8 +40,9 @@ function populateTask(arr) {
     li.classList.add('tasks', 'd-flex-between');
     ul.appendChild(li);
   });
-  getTasks(orderArray);
+  getStatusTasks(orderArray);
 }
 
 populateTask(tasks);
 addListeners();
+addDrag();

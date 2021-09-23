@@ -1,3 +1,5 @@
+import './style.css';
+
 function getDragAfterElement(mouseY) {
   const arrElements = [...document.querySelectorAll('.tasks:not(.dragging)')];
   return arrElements.reduce((over, taskElement) => {
@@ -11,26 +13,23 @@ function getDragAfterElement(mouseY) {
 }
 
 export default function addDrag() {
-  const taskElements = document.querySelectorAll('.tasks');
   const taskContainer = document.querySelector('#list');
+  const taskElements = taskContainer.querySelectorAll('.tasks');
 
   taskElements.forEach((taskElement) => {
-    taskElement.setAttribute('draggable', true);
-    taskElement.style.cursor = 'move';
-
     taskElement.addEventListener('dragstart', () => {
-      taskElement.classList.add = 'dragging';
+      taskElement.classList.add('dragging');
     });
 
     taskElement.addEventListener('dragend', () => {
-      taskElement.classList.remove = 'dragging';
+      taskElement.classList.remove('dragging');
     });
   });
 
   taskContainer.addEventListener('dragover', (event) => {
-    event.preventDefault();
-    const dragging = document.querySelectorAll('.dragging');
+    const dragging = taskContainer.querySelector('.dragging');
     const afterElement = getDragAfterElement(event.cientY);
+    event.preventDefault();
     if (afterElement == null) {
       taskContainer.appendChild(dragging);
     } else {

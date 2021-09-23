@@ -32,6 +32,7 @@ function populateTask(arr) {
       <i class="bi bi-trash"></i>
     </button>`;
     li.classList.add('tasks', 'd-flex-between');
+    li.setAttribute('draggable', true);
     ul.appendChild(li);
   });
   getStatusTasks(orderArray);

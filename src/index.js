@@ -3,19 +3,7 @@ import { addListeners, getTasks } from './statusTasks.js';
 
 require('bootstrap-icons/font/bootstrap-icons.css');
 
-class Task {
-  constructor(ind = 0, des = '') {
-    this.index = ind;
-    this.description = des;
-    this.completed = false;
-  }
-}
-
-const task1 = new Task(0, 'Task 1');
-const task2 = new Task(2, 'Task 3');
-const task3 = new Task(1, 'Task 2');
-
-const tasks = [task1, task2, task3];
+const tasks = [];
 const ul = document.getElementById('list');
 
 function populateTask(arr) {

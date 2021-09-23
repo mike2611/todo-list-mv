@@ -4,7 +4,7 @@ export function getTasks(newTasks) {
   arrTasks = newTasks;
 }
 
-function saveStatus() {
+export function saveStatus() {
   window.localStorage.setItem('tasks', JSON.stringify(arrTasks));
 }
 
@@ -29,6 +29,8 @@ function checkStatus() {
       check.checked = task.completed;
       changeStatus(check);
     });
+  } else {
+    saveStatus();
   }
 }
 

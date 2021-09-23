@@ -1,9 +1,10 @@
 import './style.css';
 import { addListeners, getTasks } from './statusTasks.js';
 
+import crud from './crud.js';
+
 require('bootstrap-icons/font/bootstrap-icons.css');
 
-const tasks = [];
 const ul = document.getElementById('list');
 
 function populateTask(arr) {
@@ -30,5 +31,9 @@ function populateTask(arr) {
   getTasks(orderArray);
 }
 
-populateTask(tasks);
-addListeners();
+const addButton = document.querySelector('#add-button');
+
+addButton.addEventListener('click', () => {
+  populateTask(crud());
+  addListeners();
+});

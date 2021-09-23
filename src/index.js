@@ -1,12 +1,13 @@
 import './style.css';
+import { addListeners, getTasks } from './statusTasks.js';
 
 require('bootstrap-icons/font/bootstrap-icons.css');
 
 class Task {
-  constructor(ind = 0, des = '', comp = false) {
+  constructor(ind = 0, des = '') {
     this.index = ind;
     this.description = des;
-    this.completed = comp;
+    this.completed = false;
   }
 }
 
@@ -31,13 +32,15 @@ function populateTask(arr) {
     const li = document.createElement('li');
     li.innerHTML = ` 
     <div class  = "d-flex-between">
-      <input type="checkbox" id="${orderArray.index}" value="${orderArray.index}">
+      <input type="checkbox" class="checks" id="${task.index}" value="${task.index}">
       ${task.description}
     </div> 
     <i class="bi bi-three-dots-vertical"></i>`;
     li.classList.add('tasks', 'd-flex-between');
     ul.appendChild(li);
   });
+  getTasks(orderArray);
 }
 
-window.onload(populateTask(tasks));
+populateTask(tasks);
+addListeners();

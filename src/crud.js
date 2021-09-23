@@ -23,3 +23,7 @@ export default function addTask() {
   }
   return arrTasks;
 }
+
+function editTask() {
+  
+}

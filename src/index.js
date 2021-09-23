@@ -22,21 +22,34 @@ function populateTask(arr) {
     li.innerHTML = ` 
     <div class  = "d-flex-between">
       <input type="checkbox" class="checks" id="${task.index - 1}" value="${task.index - 1}">
-      ${task.description}
+      <input type="text" value="${task.description}" class="edit-task">
     </div> 
-    <i class="bi bi-three-dots-vertical"></i>`;
+    <button class="edit-button">
+      <i class="bi bi-three-dots-vertical"></i>
+    </button>`;
     li.classList.add('tasks', 'd-flex-between');
     ul.appendChild(li);
   });
   getTasks(orderArray);
 }
 
-const addButton = document.querySelector('#add-button');
-
 populateTask(crud());
 addListeners();
+
+const addButton = document.querySelector('#add-button');
 
 addButton.addEventListener('click', () => {
   populateTask(crud());
   addListeners();
 });
+
+if (document.querySelectorAll('edit-button')) {
+  const editButtons = document.querySelectorAll('.edit-button');
+
+  editButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const editngTask = btn.parentNode;
+      editngTask.classList.add('editing');
+    });
+  });
+}

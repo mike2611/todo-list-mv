@@ -50,11 +50,30 @@ section ul {
   font-size: 0.9rem;
 }
 
+
 .tasks {
   border-top: 2px solid #f0f0f0;
   padding: 10px;
+}
+
+.edit-button {
+  padding: none;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  color: #989898;
+  font-size: 0.9rem;
+}
+
+.edit-task {
   color: #4d4d4d;
   font-size: 0.9rem;
+  border: none;
+  background-color: transparent;
+}
+
+.tasks.editing {
+  background-color: rgba(187, 187, 224, 0.342);
 }
 
 .d-flex-between {

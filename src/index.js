@@ -34,6 +34,7 @@ function populateTask(arr) {
 const addButton = document.querySelector('#add-button');
 
 populateTask(crud());
+addListeners();
 
 addButton.addEventListener('click', () => {
   populateTask(crud());

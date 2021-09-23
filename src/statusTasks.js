@@ -26,7 +26,7 @@ function checkStatus() {
   if (JSON.parse(window.localStorage.getItem('tasks'))) {
     arrTasks = JSON.parse(window.localStorage.getItem('tasks'));
     arrTasks.forEach((task) => {
-      const check = document.getElementById(task.index);
+      const check = document.getElementById(task.index - 1);
       check.checked = task.completed;
       changeStatus(check);
     });

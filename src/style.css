@@ -97,3 +97,7 @@ section ul {
 .d-none {
   display: none;
 }
+
+.dragging {
+  opacity: .5;
+}

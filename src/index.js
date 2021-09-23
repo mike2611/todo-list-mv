@@ -1,5 +1,6 @@
 import './style.css';
-import { addListeners, getTasks } from './statusTasks.js';
+import { addListeners, getStatusTasks } from './statusTasks.js';
+import addDrag from './dragDrop.js';
 
 import { addTask, deleteCompleted, editBtns } from './crud.js';
 
@@ -33,7 +34,7 @@ function populateTask(arr) {
     li.classList.add('tasks', 'd-flex-between');
     ul.appendChild(li);
   });
-  getTasks(orderArray);
+  getStatusTasks(orderArray);
 }
 
 populateTask(addTask());
@@ -53,3 +54,4 @@ addButton.addEventListener('click', () => {
 clearButton.addEventListener('click', () => {
   deleteCompleted();
 });
+addDrag();

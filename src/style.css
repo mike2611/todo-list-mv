@@ -72,6 +72,10 @@ section ul {
   background-color: transparent;
 }
 
+.edit-task:focus {
+  outline: none;
+}
+
 .tasks.editing {
   background-color: rgba(187, 187, 224, 0.342);
 }

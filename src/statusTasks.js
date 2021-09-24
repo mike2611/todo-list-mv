@@ -11,11 +11,11 @@ export function getTasks(newTasks) {
 
 function changeStatus(check) {
   if (check.checked) {
-    check.parentElement.style.color = '#bdbbbb';
+    check.parentElement.querySelector('.edit-task').style.color = '#bdbbbbda';
     check.parentElement.style.textDecoration = 'line-through';
     arrTasks[check.id].completed = true;
   } else {
-    check.parentElement.style.color = '#4d4d4d';
+    check.parentElement.querySelector('.edit-task').style.color = '#4d4d4d';
     check.parentElement.style.textDecoration = 'none';
     arrTasks[check.id].completed = false;
   }

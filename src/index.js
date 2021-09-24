@@ -1,7 +1,7 @@
 import './style.css';
 import { addListeners, getTasks } from './statusTasks.js';
 
-import crud from './crud.js';
+import { addTask, editBtns } from './crud.js';
 
 require('bootstrap-icons/font/bootstrap-icons.css');
 
@@ -22,7 +22,7 @@ function populateTask(arr) {
     li.innerHTML = ` 
     <div class  = "d-flex-between">
       <input type="checkbox" class="checks" id="${task.index - 1}" value="${task.index - 1}">
-      <input type="text" value="${task.description}" class="edit-task">
+      <input type="text" value="${task.description}" class="edit-task" disabled>
     </div> 
     <button class="edit-button">
       <i class="bi bi-three-dots-vertical"></i>
@@ -33,23 +33,14 @@ function populateTask(arr) {
   getTasks(orderArray);
 }
 
-populateTask(crud());
+populateTask(addTask());
 addListeners();
+editBtns();
 
 const addButton = document.querySelector('#add-button');
 
 addButton.addEventListener('click', () => {
-  populateTask(crud());
+  populateTask(addTask());
   addListeners();
+  editBtns();
 });
-
-if (document.querySelectorAll('edit-button')) {
-  const editButtons = document.querySelectorAll('.edit-button');
-
-  editButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const editngTask = btn.parentNode;
-      editngTask.classList.add('editing');
-    });
-  });
-}

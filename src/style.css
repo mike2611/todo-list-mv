@@ -42,7 +42,7 @@ section ul {
 }
 
 #add-button {
-  padding: none;
+  padding: 0;
   cursor: pointer;
   background: transparent;
   border: none;
@@ -50,14 +50,13 @@ section ul {
   font-size: 0.9rem;
 }
 
-
 .tasks {
   border-top: 2px solid #f0f0f0;
   padding: 10px;
 }
 
 .task-buttons {
-  padding: none;
+  padding: 0;
   cursor: pointer;
   background: transparent;
   border: none;

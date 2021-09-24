@@ -56,7 +56,7 @@ section ul {
   padding: 10px;
 }
 
-.edit-button {
+.task-buttons {
   padding: none;
   cursor: pointer;
   background: transparent;
@@ -92,4 +92,8 @@ section ul {
   color: #949494;
   width: 100%;
   height: 50px;
+}
+
+.d-none {
+  display: none;
 }

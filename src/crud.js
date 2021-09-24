@@ -26,32 +26,38 @@ export function addTask() {
   return arrTasks;
 }
 
+function deleteTask() {
+}
+
 function changeIcon() {
   const tasks = document.querySelectorAll('.tasks');
   tasks.forEach((task) => {
-    task.querySelector('.icon-btn').classList.remove('bi-trash');
-    task.querySelector('.icon-btn').classList.add('bi-three-dots-vertical');
+    const deleteBtn = task.querySelector('.delete-button');
+    const editBtn = task.querySelector('.edit-button');
+    deleteBtn.classList.add('d-none');
+    editBtn.classList.remove('d-none');
   });
   if (document.querySelector('.editing')) {
-    const edditingTask = document.querySelector('.editing');
-    const icon = edditingTask.querySelector('.icon-btn');
-    icon.classList.add('bi-trash');
+    const editingTask = document.querySelector('.editing');
+    const deleteBtn = editingTask.querySelector('.delete-button');
+    const editBtn = editingTask.querySelector('.edit-button');
+    deleteBtn.classList.remove('d-none');
+    editBtn.classList.add('d-none');
   }
 }
 
 function editTask() {
   const inputTasks = document.querySelectorAll('.edit-task');
-  const task = document.querySelector('.editing');
-  const inputTask = task.querySelector('.edit-task');
+  const editingTask = document.querySelector('.editing');
+  const inputTask = editingTask.querySelector('.edit-task');
   inputTask.disabled = false;
-  const index = task.querySelector('.checks').id;
+  const index = editingTask.querySelector('.checks').id;
 
   inputTasks.forEach((input) => {
     input.addEventListener('blur', () => {
-      console.log("entro");
       const arrTasks = JSON.parse(window.localStorage.getItem('tasks'));
       arrTasks[index].description = inputTask.value;
-      task.classList.remove('editing');
+      editingTask.classList.remove('editing');
       inputTask.disabled = true;
       getTasks(arrTasks);
       saveStatus();

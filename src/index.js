@@ -24,8 +24,11 @@ function populateTask(arr) {
       <input type="checkbox" class="checks" id="${task.index - 1}" value="${task.index - 1}">
       <input type="text" value="${task.description}" class="edit-task" disabled>
     </div> 
-    <button class="edit-button">
+    <button class="edit-button task-buttons">
       <i class="bi bi-three-dots-vertical icon-btn"></i>
+    </button>
+    <button class="delete-button task-buttons d-none">
+    <i class="bi bi-trash"></i>
     </button>`;
     li.classList.add('tasks', 'd-flex-between');
     ul.appendChild(li);

@@ -21,7 +21,7 @@ function populateTask(arr) {
     const li = document.createElement('li');
     li.innerHTML = ` 
     <div class  = "d-flex-between">
-      <input type="checkbox" class="checks" id="${task.index - 1}" value="${task.index - 1}">
+      <input type="checkbox" class="checks" id="${task.index}" value="${task.index}">
       <input type="text" value="${task.description}" class="edit-task" disabled>
     </div> 
     <button class="edit-button task-buttons">

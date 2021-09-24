@@ -27,12 +27,19 @@ export function addTask() {
 }
 
 function updateIds(arrTasks) {
-  let id = 1;
+  let idTask = 1;
+  let idChecks = 1;
+  const checks = document.querySelectorAll('.checks');
+
   arrTasks.forEach((task) => {
-    task.index = id;
-    id += 1;
+    task.index = idTask;
+    idTask += 1;
   });
   getTasks(arrTasks);
+  checks.forEach((check) => {
+    check.id = idChecks;
+    idChecks += 1;
+  });
 }
 
 function deleteTask() {
@@ -44,7 +51,7 @@ function deleteTask() {
     btn.addEventListener('click', () => {
       const ul = document.getElementById('list');
       const deletedTask = document.querySelector('.editing');
-      const index = btn.parentNode.querySelector('.checks').id;
+      const index = btn.parentNode.querySelector('.checks').id - 1;
       const arrTasks = JSON.parse(window.localStorage.getItem('tasks'));
       ul.removeChild(deletedTask);
       arrTasks.splice(index, 1);
@@ -75,7 +82,7 @@ function editTask() {
   const editingTask = document.querySelector('.editing');
   const inputTask = editingTask.querySelector('.edit-task');
   inputTask.disabled = false;
-  const index = editingTask.querySelector('.checks').id;
+  const index = editingTask.querySelector('.checks').id - 1;
 
   inputTasks.forEach((input) => {
     input.addEventListener('blur', () => {

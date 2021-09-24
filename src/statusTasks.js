@@ -1,27 +1,28 @@
 let arrTasks = [];
 
-export function getTasks(newTasks) {
-  arrTasks = newTasks;
+export function saveStatus() {
+  window.localStorage.setItem('tasks', JSON.stringify(arrTasks));
 }
 
-function saveStatus() {
-  window.localStorage.setItem('tasks', JSON.stringify(arrTasks));
+export function getTasks(newTasks) {
+  arrTasks = newTasks;
+  saveStatus();
 }
 
 function changeStatus(check) {
   if (check.checked) {
-    check.parentElement.style.color = '#bdbbbb';
+    check.parentElement.querySelector('.edit-task').style.color = '#bdbbbbda';
     check.parentElement.style.textDecoration = 'line-through';
-    arrTasks[check.id].completed = true;
+    arrTasks[check.id - 1].completed = true;
   } else {
-    check.parentElement.style.color = '#4d4d4d';
+    check.parentElement.querySelector('.edit-task').style.color = '#4d4d4d';
     check.parentElement.style.textDecoration = 'none';
-    arrTasks[check.id].completed = false;
+    arrTasks[check.id - 1].completed = false;
   }
   saveStatus();
 }
 
-function checkStatus() {
+export function checkStatus() {
   if (JSON.parse(window.localStorage.getItem('tasks'))) {
     arrTasks = JSON.parse(window.localStorage.getItem('tasks'));
     arrTasks.forEach((task) => {
@@ -29,6 +30,8 @@ function checkStatus() {
       check.checked = task.completed;
       changeStatus(check);
     });
+  } else {
+    saveStatus();
   }
 }
 

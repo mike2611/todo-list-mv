@@ -1,27 +1,16 @@
 import './style.css';
 import { addListeners, getTasks } from './statusTasks.js';
 
+import { addTask, deleteCompleted, editBtns } from './crud.js';
+
 require('bootstrap-icons/font/bootstrap-icons.css');
-
-class Task {
-  constructor(ind = 0, des = '') {
-    this.index = ind;
-    this.description = des;
-    this.completed = false;
-  }
-}
-
-const task1 = new Task(0, 'Task 1');
-const task2 = new Task(2, 'Task 3');
-const task3 = new Task(1, 'Task 2');
-
-const tasks = [task1, task2, task3];
-const ul = document.getElementById('list');
 
 function populateTask(arr) {
   const orderArray = [];
+  const ul = document.getElementById('list');
+  ul.innerHTML = '';
 
-  for (let i = 0; i < arr.length; i += 1) {
+  for (let i = 1; i < arr.length + 1; i += 1) {
     for (let j = 0; j < arr.length; j += 1) {
       if (i === arr[j].index) {
         orderArray.push(arr[j]);
@@ -33,14 +22,34 @@ function populateTask(arr) {
     li.innerHTML = ` 
     <div class  = "d-flex-between">
       <input type="checkbox" class="checks" id="${task.index}" value="${task.index}">
-      ${task.description}
+      <input type="text" value="${task.description}" class="edit-task" disabled>
     </div> 
-    <i class="bi bi-three-dots-vertical"></i>`;
+    <button class="edit-button task-buttons">
+      <i class="bi bi-three-dots-vertical icon-btn"></i>
+    </button>
+    <button class="delete-button task-buttons d-none">
+      <i class="bi bi-trash"></i>
+    </button>`;
     li.classList.add('tasks', 'd-flex-between');
     ul.appendChild(li);
   });
   getTasks(orderArray);
 }
 
-populateTask(tasks);
+populateTask(addTask());
 addListeners();
+editBtns();
+
+const addButton = document.querySelector('#add-button');
+const clearButton = document.querySelector('#clear-button');
+
+addButton.addEventListener('click', () => {
+  populateTask(addTask());
+  addListeners();
+  editBtns();
+  document.querySelector('#input-task').value = '';
+});
+
+clearButton.addEventListener('click', () => {
+  deleteCompleted();
+});

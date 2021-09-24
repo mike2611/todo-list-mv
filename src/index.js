@@ -25,7 +25,7 @@ function populateTask(arr) {
       <input type="text" value="${task.description}" class="edit-task" disabled>
     </div> 
     <button class="edit-button">
-      <i class="bi bi-three-dots-vertical"></i>
+      <i class="bi bi-three-dots-vertical icon-btn"></i>
     </button>`;
     li.classList.add('tasks', 'd-flex-between');
     ul.appendChild(li);

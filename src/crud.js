@@ -1,4 +1,4 @@
-import { checkStatus, getTasks } from './statusTasks.js';
+import { getTasks } from './statusTasks.js';
 
 class Task {
   constructor(ind = 0, des = '') {
@@ -92,7 +92,6 @@ function editTask() {
 }
 
 export function editBtns() {
-  console.log('se ejecuta');
   deleteTask();
   if (document.querySelectorAll('edit-button')) {
     const editButtons = document.querySelectorAll('.edit-button');
@@ -105,4 +104,21 @@ export function editBtns() {
       });
     });
   }
+}
+
+export function deleteCompleted() {
+  let arrTasks = [];
+  if (JSON.parse(window.localStorage.getItem('tasks'))) {
+    arrTasks = JSON.parse(window.localStorage.getItem('tasks'));
+  }
+  const incompleteTasks = arrTasks.filter((task) => !task.completed);
+  updateIds(incompleteTasks);
+
+  const ul = document.getElementById('list');
+  const checks = document.querySelectorAll('.checks');
+  checks.forEach((check) => {
+    if (check.checked) {
+      ul.removeChild(check.parentNode.parentNode);
+    }
+  });
 }

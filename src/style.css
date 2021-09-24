@@ -92,6 +92,7 @@ section ul {
   color: #949494;
   width: 100%;
   height: 50px;
+  cursor: pointer;
 }
 
 .d-none {

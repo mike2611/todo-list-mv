@@ -1,7 +1,7 @@
 import './style.css';
 import { addListeners, getTasks } from './statusTasks.js';
 
-import { addTask, editBtns } from './crud.js';
+import { addTask, deleteCompleted, editBtns } from './crud.js';
 
 require('bootstrap-icons/font/bootstrap-icons.css');
 
@@ -41,9 +41,15 @@ addListeners();
 editBtns();
 
 const addButton = document.querySelector('#add-button');
+const clearButton = document.querySelector('#clear-button');
 
 addButton.addEventListener('click', () => {
   populateTask(addTask());
   addListeners();
   editBtns();
+  document.querySelector('#input-task').value = '';
+});
+
+clearButton.addEventListener('click', () => {
+  deleteCompleted();
 });

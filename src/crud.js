@@ -1,4 +1,4 @@
-import { saveStatus, getTasks } from './statusTasks.js';
+import { checkStatus, getTasks } from './statusTasks.js';
 
 class Task {
   constructor(ind = 0, des = '') {
@@ -26,7 +26,31 @@ export function addTask() {
   return arrTasks;
 }
 
+function updateIds(arrTasks) {
+  let id = 1;
+  arrTasks.forEach((task) => {
+    task.index = id;
+    id += 1;
+  });
+  getTasks(arrTasks);
+}
+
 function deleteTask() {
+  const deleteBtns = document.querySelectorAll('.delete-button');
+  deleteBtns.forEach((btn) => {
+    btn.addEventListener('mousedown', (event) => {
+      event.preventDefault();
+    });
+    btn.addEventListener('click', () => {
+      const ul = document.getElementById('list');
+      const deletedTask = document.querySelector('.editing');
+      const index = btn.parentNode.querySelector('.checks').id;
+      const arrTasks = JSON.parse(window.localStorage.getItem('tasks'));
+      ul.removeChild(deletedTask);
+      arrTasks.splice(index, 1);
+      updateIds(arrTasks);
+    });
+  });
 }
 
 function changeIcon() {
@@ -60,7 +84,6 @@ function editTask() {
       editingTask.classList.remove('editing');
       inputTask.disabled = true;
       getTasks(arrTasks);
-      saveStatus();
       changeIcon();
     });
     inputTask.focus();
@@ -69,6 +92,8 @@ function editTask() {
 }
 
 export function editBtns() {
+  console.log('se ejecuta');
+  deleteTask();
   if (document.querySelectorAll('edit-button')) {
     const editButtons = document.querySelectorAll('.edit-button');
     editButtons.forEach((btn) => {

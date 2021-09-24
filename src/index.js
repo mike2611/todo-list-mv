@@ -28,7 +28,7 @@ function populateTask(arr) {
       <i class="bi bi-three-dots-vertical icon-btn"></i>
     </button>
     <button class="delete-button task-buttons d-none">
-    <i class="bi bi-trash"></i>
+      <i class="bi bi-trash"></i>
     </button>`;
     li.classList.add('tasks', 'd-flex-between');
     ul.appendChild(li);

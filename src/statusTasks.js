@@ -22,7 +22,7 @@ function changeStatus(check) {
   saveStatus();
 }
 
-function checkStatus() {
+export function checkStatus() {
   if (JSON.parse(window.localStorage.getItem('tasks'))) {
     arrTasks = JSON.parse(window.localStorage.getItem('tasks'));
     arrTasks.forEach((task) => {

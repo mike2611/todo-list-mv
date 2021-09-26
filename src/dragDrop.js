@@ -1,4 +1,5 @@
 import './style.css';
+import {updateIds} from './crud.js';
 
 function getDragAfterElement(container, y) {
   const draggableElements = [...container.querySelectorAll('.tasks:not(.dragging)')];
@@ -36,5 +37,17 @@ export default function addDrag() {
     } else {
       taskContainer.insertBefore(dragging, afterElement);
     }
+
+    const arrTasks = JSON.parse(window.localStorage.getItem('tasks'));
+    const orderArray = [];
+    const checks = document.querySelectorAll('.checks');
+    checks.forEach((check) => {
+      for (let j = 0; j < arrTasks.length; j += 1) {
+        if (check.id === arrTasks[j].index) {
+          orderArray.push(arrTasks[j]);
+        }
+      }
+    });
+    updateIds(orderArray);
   });
 }

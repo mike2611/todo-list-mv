@@ -26,7 +26,7 @@ export function addTask() {
   return arrTasks;
 }
 
-function updateIds(arrTasks) {
+export function updateIds(arrTasks) {
   let idTask = 1;
   let idChecks = 1;
   const checks = document.querySelectorAll('.checks');

@@ -53,6 +53,7 @@ section ul {
 .tasks {
   border-top: 2px solid #f0f0f0;
   padding: 10px;
+  cursor: move;
 }
 
 .task-buttons {
@@ -77,7 +78,6 @@ section ul {
 
 .tasks.editing {
   background-color: rgba(187, 187, 224, 0.342);
-  cursor: move;
 }
 
 .d-flex-between {
@@ -101,4 +101,5 @@ section ul {
 
 .tasks.dragging {
   opacity: .5;
+  background-color: rgba(187, 187, 224, 0.342);
 }

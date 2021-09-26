@@ -41,6 +41,7 @@ function populateTask(arr) {
 populateTask(addTask());
 addListeners();
 editBtns();
+addDrag();
 
 const addButton = document.querySelector('#add-button');
 const clearButton = document.querySelector('#clear-button');
@@ -49,10 +50,10 @@ addButton.addEventListener('click', () => {
   populateTask(addTask());
   addListeners();
   editBtns();
+  addDrag();
   document.querySelector('#input-task').value = '';
 });
 
 clearButton.addEventListener('click', () => {
   deleteCompleted();
 });
-addDrag();

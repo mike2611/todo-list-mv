@@ -1,15 +1,16 @@
 import './style.css';
 
-function getDragAfterElement(mouseY) {
-  const arrElements = [...document.querySelectorAll('.tasks:not(.dragging)')];
-  return arrElements.reduce((over, taskElement) => {
-    const box = taskElement.getBoundingClientRect();
-    const offset = mouseY - (box.top - box.bottom / 2);
-    if (offset < 0 && offset > over.offset) {
-      return { offset: offset, element: taskElement };
+function getDragAfterElement(container, y) {
+  const draggableElements = [...container.querySelectorAll('.tasks:not(.dragging)')];
+
+  return draggableElements.reduce((closest, child) => {
+    const box = child.getBoundingClientRect();
+    const offset = y - box.top - box.height / 2;
+    if (offset < 0 && offset > closest.offset) {
+      return { offset, element: child };
     }
-    return over;
-  }, { offset: Number.NEFATIVE_INFINITY }).element;
+    return closest;
+  }, { offset: Number.NEGATIVE_INFINITY }).element;
 }
 
 export default function addDrag() {
@@ -27,10 +28,10 @@ export default function addDrag() {
   });
 
   taskContainer.addEventListener('dragover', (event) => {
-    const dragging = taskContainer.querySelector('.dragging');
-    const afterElement = getDragAfterElement(event.cientY);
     event.preventDefault();
-    if (afterElement == null) {
+    const afterElement = getDragAfterElement(taskContainer, event.clientY);
+    const dragging = document.querySelector('.dragging');
+    if (afterElement == null || afterElement === undefined) {
       taskContainer.appendChild(dragging);
     } else {
       taskContainer.insertBefore(dragging, afterElement);

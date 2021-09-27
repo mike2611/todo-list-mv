@@ -1,4 +1,4 @@
-import { getTasks } from './statusTasks.js';
+import { getStatusTasks } from './statusTasks.js';
 
 class Task {
   constructor(ind = 0, des = '') {
@@ -26,7 +26,7 @@ export function addTask() {
   return arrTasks;
 }
 
-function updateIds(arrTasks) {
+export function updateIds(arrTasks) {
   let idTask = 1;
   let idChecks = 1;
   const checks = document.querySelectorAll('.checks');
@@ -35,7 +35,7 @@ function updateIds(arrTasks) {
     task.index = idTask;
     idTask += 1;
   });
-  getTasks(arrTasks);
+  getStatusTasks(arrTasks);
   checks.forEach((check) => {
     check.id = idChecks;
     idChecks += 1;
@@ -87,10 +87,12 @@ function editTask() {
   inputTasks.forEach((input) => {
     input.addEventListener('blur', () => {
       const arrTasks = JSON.parse(window.localStorage.getItem('tasks'));
-      arrTasks[index].description = inputTask.value;
+      if (inputTask.value !== undefined) {
+        arrTasks[index].description = inputTask.value;
+      }
       editingTask.classList.remove('editing');
       inputTask.disabled = true;
-      getTasks(arrTasks);
+      getStatusTasks(arrTasks);
       changeIcon();
     });
     inputTask.focus();

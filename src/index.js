@@ -1,5 +1,6 @@
 import './style.css';
-import { addListeners, getTasks } from './statusTasks.js';
+import { addListeners, getStatusTasks } from './statusTasks.js';
+import addDrag from './dragDrop.js';
 
 import { addTask, deleteCompleted, editBtns } from './crud.js';
 
@@ -31,14 +32,16 @@ function populateTask(arr) {
       <i class="bi bi-trash"></i>
     </button>`;
     li.classList.add('tasks', 'd-flex-between');
+    li.setAttribute('draggable', true);
     ul.appendChild(li);
   });
-  getTasks(orderArray);
+  getStatusTasks(orderArray);
 }
 
 populateTask(addTask());
 addListeners();
 editBtns();
+addDrag();
 
 const addButton = document.querySelector('#add-button');
 const clearButton = document.querySelector('#clear-button');
@@ -47,6 +50,7 @@ addButton.addEventListener('click', () => {
   populateTask(addTask());
   addListeners();
   editBtns();
+  addDrag();
   document.querySelector('#input-task').value = '';
 });
 

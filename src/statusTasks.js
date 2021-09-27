@@ -4,7 +4,7 @@ export function saveStatus() {
   window.localStorage.setItem('tasks', JSON.stringify(arrTasks));
 }
 
-export function getTasks(newTasks) {
+export function getStatusTasks(newTasks) {
   arrTasks = newTasks;
   saveStatus();
 }

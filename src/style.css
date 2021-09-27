@@ -53,6 +53,7 @@ section ul {
 .tasks {
   border-top: 2px solid #f0f0f0;
   padding: 10px;
+  cursor: move;
 }
 
 .task-buttons {
@@ -96,4 +97,9 @@ section ul {
 
 .d-none {
   display: none;
+}
+
+.tasks.dragging {
+  opacity: 0.5;
+  background-color: rgba(187, 187, 224, 0.342);
 }

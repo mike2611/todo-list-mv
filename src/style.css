@@ -100,10 +100,6 @@ section ul {
 }
 
 .tasks.dragging {
-  opacity: .5;
+  opacity: 0.5;
   background-color: rgba(187, 187, 224, 0.342);
-}
-
-.dragging {
-  opacity: .5;
 }

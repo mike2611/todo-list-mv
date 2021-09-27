@@ -87,7 +87,9 @@ function editTask() {
   inputTasks.forEach((input) => {
     input.addEventListener('blur', () => {
       const arrTasks = JSON.parse(window.localStorage.getItem('tasks'));
-      arrTasks[index].description = inputTask.value;
+      if (inputTask.value !== undefined) {
+        arrTasks[index].description = inputTask.value;
+      }
       editingTask.classList.remove('editing');
       inputTask.disabled = true;
       getStatusTasks(arrTasks);

@@ -25,6 +25,17 @@ export default function addDrag() {
 
     taskElement.addEventListener('dragend', () => {
       taskElement.classList.remove('dragging');
+      const arrTasks = JSON.parse(window.localStorage.getItem('tasks'));
+      const orderArray = [];
+      const checks = document.querySelectorAll('.checks');
+      checks.forEach((check) => {
+        for (let j = 0; j < arrTasks.length; j += 1) {
+          if (parseInt(check.id, 10) === parseInt(arrTasks[j].index, 10)) {
+            orderArray.push(arrTasks[j]);
+          }
+        }
+      });
+      updateIds(orderArray);
     });
   });
 
@@ -37,17 +48,5 @@ export default function addDrag() {
     } else {
       taskContainer.insertBefore(dragging, afterElement);
     }
-
-    const arrTasks = JSON.parse(window.localStorage.getItem('tasks'));
-    const orderArray = [];
-    const checks = document.querySelectorAll('.checks');
-    checks.forEach((check) => {
-      for (let j = 0; j < arrTasks.length; j += 1) {
-        if (check.id === arrTasks[j].index) {
-          orderArray.push(arrTasks[j]);
-        }
-      }
-    });
-    updateIds(orderArray);
   });
 }

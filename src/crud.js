@@ -8,7 +8,7 @@ class Task {
   }
 }
 
-function getArray() {
+export function getArrayLocal() {
   let arrTasks = [];
   if (JSON.parse(window.localStorage.getItem('tasks'))) {
     arrTasks = JSON.parse(window.localStorage.getItem('tasks'));
@@ -17,7 +17,7 @@ function getArray() {
 }
 
 export function addTask() {
-  const arrTasks = getArray();
+  const arrTasks = getArrayLocal();
   const input = document.querySelector('#input-task');
   if (input.value) {
     const task = new Task(arrTasks.length + 1, input.value);
@@ -52,7 +52,7 @@ function deleteTask() {
       const ul = document.getElementById('list');
       const deletedTask = document.querySelector('.editing');
       const index = btn.parentNode.querySelector('.checks').id - 1;
-      const arrTasks = JSON.parse(window.localStorage.getItem('tasks'));
+      const arrTasks = getArrayLocal();
       ul.removeChild(deletedTask);
       arrTasks.splice(index, 1);
       updateIds(arrTasks);
@@ -86,7 +86,7 @@ function editTask() {
 
   inputTasks.forEach((input) => {
     input.addEventListener('blur', () => {
-      const arrTasks = JSON.parse(window.localStorage.getItem('tasks'));
+      const arrTasks = getArrayLocal();
       if (inputTask.value !== undefined) {
         arrTasks[index].description = inputTask.value;
       }
@@ -116,10 +116,7 @@ export function editBtns() {
 }
 
 export function deleteCompleted() {
-  let arrTasks = [];
-  if (JSON.parse(window.localStorage.getItem('tasks'))) {
-    arrTasks = JSON.parse(window.localStorage.getItem('tasks'));
-  }
+  const arrTasks = getArrayLocal();
   const incompleteTasks = arrTasks.filter((task) => !task.completed);
   updateIds(incompleteTasks);
 

@@ -38,19 +38,20 @@ function populateTask(arr) {
   getStatusTasks(orderArray);
 }
 
-populateTask(addTask());
-addListeners();
-editBtns();
-addDrag();
+function callFunctions() {
+  populateTask(addTask());
+  addListeners();
+  editBtns();
+  addDrag();
+}
+
+callFunctions();
 
 const addButton = document.querySelector('#add-button');
 const clearButton = document.querySelector('#clear-button');
 
 addButton.addEventListener('click', () => {
-  populateTask(addTask());
-  addListeners();
-  editBtns();
-  addDrag();
+  callFunctions();
   document.querySelector('#input-task').value = '';
 });
 

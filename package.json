@@ -4,7 +4,8 @@
   "description": "",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --env=jsdom",
+    "watch": "jest --coverage --watch *.js",
     "build": "webpack",
     "start": "webpack serve --open",
     "deploy": "gh-pages -d dist"
@@ -13,9 +14,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.15.4",
     "css-loader": "^6.3.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.2",
+    "jest": "^27.2.4",
     "style-loader": "^3.3.0",
     "webpack": "^5.53.0",
     "webpack-cli": "^4.8.0",

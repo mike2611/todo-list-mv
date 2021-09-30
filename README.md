@@ -31,6 +31,13 @@ Clone this project by command git clone https://github.com/mike2611/todo-list-mv
 - Open terminal and move to the root folder
 - Run npm start if you have npm installed or Open dist/index.html in the browser (you can use Live Server extension in Visual Studio Code)
 
+## :test_tube: Tests
+
+If you have npm installed you can run tests for the functions add and delete (localStorage and DOM).
+
+- Run npm install
+- Run npm test
+
 ## Authors
 
 **👤 Miguel Angel Puentes**

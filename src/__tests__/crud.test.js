@@ -1,5 +1,6 @@
 import { addTask } from '../crud.js';
 import utilDelete from '../utilDelete';
+import utilPopulate from '../utilPopulate';
 
 jest.mock('../localStorage');
 
@@ -62,5 +63,22 @@ describe('Testing delete', () => {
     </ul>`;
     const deleteBtn = document.querySelector('.delete-button');
     expect(utilDelete(deleteBtn).length).toBe(1);
+  });
+});
+
+describe('Dom Add task', () => {
+  test('Add three li', () => {
+    const newTasks = [task1, task2, task3];
+    document.body.innerHTML = '<ul id="list"></ul>';
+    utilPopulate(newTasks);
+    const ul = document.querySelector('#list');
+    expect(ul.childElementCount).toBe(3);
+  });
+  test('Get tag name LI', () => {
+    const newTasks = [task1, task2, task3];
+    document.body.innerHTML = '<ul id="list"></ul>';
+    utilPopulate(newTasks);
+    const ul = document.querySelector('#list');
+    expect(ul.firstChild.tagName).toBe('LI');
   });
 });

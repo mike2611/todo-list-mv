@@ -1,6 +1,7 @@
 import { getStatusTasks } from './statusTasks.js';
 import localStorage from './localStorage.js';
-import utilDelete from './utilDelete.js';
+import utilDelete from './utils/utilDelete.js';
+import utilEdit from './utils/utilEdit.js';
 
 class Task {
   constructor(ind = 0, des = '') {
@@ -65,22 +66,15 @@ function changeIcon() {
   }
 }
 
-function editTask() {
+export function editTask() {
   const inputTasks = document.querySelectorAll('.edit-task');
   const editingTask = document.querySelector('.editing');
   const inputTask = editingTask.querySelector('.edit-task');
   inputTask.disabled = false;
-  const index = editingTask.querySelector('.checks').id - 1;
 
   inputTasks.forEach((input) => {
     input.addEventListener('blur', () => {
-      const arrTasks = localStorage();
-      if (inputTask.value !== undefined) {
-        arrTasks[index].description = inputTask.value;
-      }
-      editingTask.classList.remove('editing');
-      inputTask.disabled = true;
-      getStatusTasks(arrTasks);
+      getStatusTasks(utilEdit(inputTask, editingTask));
       changeIcon();
     });
     inputTask.focus();

@@ -1,6 +1,6 @@
 import { addTask } from '../crud.js';
-import utilDelete from '../utilDelete.js';
-import utilPopulate from '../utilPopulate.js';
+import utilDelete from '../utils/utilDelete.js';
+import utilPopulate from '../utils/utilPopulate.js';
 
 jest.mock('../localStorage');
 

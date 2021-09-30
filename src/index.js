@@ -2,7 +2,7 @@ import './style.css';
 import { addListeners, getStatusTasks } from './statusTasks.js';
 import addDrag from './dragDrop.js';
 import { addTask, deleteCompleted, editBtns } from './crud.js';
-import utilPopulate from './utilPopulate';
+import utilPopulate from './utils/utilPopulate.js';
 
 require('bootstrap-icons/font/bootstrap-icons.css');
 

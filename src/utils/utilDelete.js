@@ -1,4 +1,4 @@
-import localStorage from './localStorage.js';
+import localStorage from '../localStorage.js';
 
 export default function utilDelete(btn) {
   const ul = document.getElementById('list');

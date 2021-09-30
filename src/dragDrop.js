@@ -1,6 +1,6 @@
 import './style.css';
 import { updateIds } from './crud.js';
-import localStorage from './localStorage';
+import localStorage from './localStorage.js';
 
 function getDragAfterElement(container, y) {
   const draggableElements = [...container.querySelectorAll('.tasks:not(.dragging)')];

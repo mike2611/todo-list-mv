@@ -45,14 +45,24 @@ function callFunctions() {
   addDrag();
 }
 
+function addNewTask() {
+  callFunctions();
+  document.querySelector('#input-task').value = '';
+}
+
 callFunctions();
 
 const addButton = document.querySelector('#add-button');
 const clearButton = document.querySelector('#clear-button');
 
 addButton.addEventListener('click', () => {
-  callFunctions();
-  document.querySelector('#input-task').value = '';
+  addNewTask();
+});
+
+document.querySelector('#input-task').addEventListener('keyup', (e) => {
+  if (e.keyCode === 13 && document.querySelector('#input-task').value !== '') {
+    addNewTask();
+  }
 });
 
 clearButton.addEventListener('click', () => {

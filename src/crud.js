@@ -131,7 +131,6 @@ export function editBtns() {
 export function deleteCompleted() {
   const arrTasks = getArrayLocal();
   const incompleteTasks = arrTasks.filter((task) => !task.completed);
-  updateIds(incompleteTasks);
 
   const ul = document.getElementById('list');
   const checks = document.querySelectorAll('.checks');
@@ -140,4 +139,5 @@ export function deleteCompleted() {
       ul.removeChild(check.parentNode.parentNode);
     }
   });
+  updateIds(incompleteTasks);
 }

@@ -9,16 +9,28 @@ export function getStatusTasks(newTasks) {
   saveStatus();
 }
 
-function changeStatus(check) {
+function changeStyle(check) {
   if (check.checked) {
     check.parentElement.querySelector('.edit-task').style.color = '#bdbbbbda';
     check.parentElement.style.textDecoration = 'line-through';
-    arrTasks[check.id - 1].completed = true;
   } else {
     check.parentElement.querySelector('.edit-task').style.color = '#4d4d4d';
     check.parentElement.style.textDecoration = 'none';
+  }
+}
+
+export function changeStatus(check) {
+  if (check.checked) {
+    arrTasks[check.id - 1].completed = true;
+  } else {
     arrTasks[check.id - 1].completed = false;
   }
+  return arrTasks;
+}
+
+function changeSaveStatus(check) {
+  changeStatus(check);
+  changeStyle(check);
   saveStatus();
 }
 
@@ -28,7 +40,7 @@ export function checkStatus() {
     arrTasks.forEach((task) => {
       const check = document.getElementById(task.index);
       check.checked = task.completed;
-      changeStatus(check);
+      changeSaveStatus(check);
     });
   } else {
     saveStatus();
@@ -39,7 +51,7 @@ export function addListeners() {
   const checks = document.querySelectorAll('.checks');
 
   checks.forEach((check) => {
-    check.addEventListener('change', () => changeStatus(check));
+    check.addEventListener('change', () => changeSaveStatus(check));
     checkStatus();
   });
 }

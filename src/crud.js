@@ -1,4 +1,6 @@
 import { getStatusTasks } from './statusTasks.js';
+import localStorage from './localStorage.js';
+import utilDelete from './utilDelete.js';
 
 class Task {
   constructor(ind = 0, des = '') {
@@ -8,16 +10,8 @@ class Task {
   }
 }
 
-export function getArrayLocal() {
-  let arrTasks = [];
-  if (JSON.parse(window.localStorage.getItem('tasks'))) {
-    arrTasks = JSON.parse(window.localStorage.getItem('tasks'));
-  }
-  return arrTasks;
-}
-
 export function addTask() {
-  const arrTasks = getArrayLocal();
+  const arrTasks = localStorage();
   const input = document.querySelector('#input-task');
   if (input.value) {
     const task = new Task(arrTasks.length + 1, input.value);
@@ -42,20 +36,14 @@ export function updateIds(arrTasks) {
   });
 }
 
-function deleteTask() {
+export function deleteTask() {
   const deleteBtns = document.querySelectorAll('.delete-button');
   deleteBtns.forEach((btn) => {
     btn.addEventListener('mousedown', (event) => {
       event.preventDefault();
     });
     btn.addEventListener('click', () => {
-      const ul = document.getElementById('list');
-      const deletedTask = document.querySelector('.editing');
-      const index = btn.parentNode.querySelector('.checks').id - 1;
-      const arrTasks = getArrayLocal();
-      ul.removeChild(deletedTask);
-      arrTasks.splice(index, 1);
-      updateIds(arrTasks);
+      updateIds(utilDelete(btn));
     });
   });
 }
@@ -86,7 +74,7 @@ function editTask() {
 
   inputTasks.forEach((input) => {
     input.addEventListener('blur', () => {
-      const arrTasks = getArrayLocal();
+      const arrTasks = localStorage();
       if (inputTask.value !== undefined) {
         arrTasks[index].description = inputTask.value;
       }
@@ -116,7 +104,7 @@ export function editBtns() {
 }
 
 export function deleteCompleted() {
-  const arrTasks = getArrayLocal();
+  const arrTasks = localStorage();
   const incompleteTasks = arrTasks.filter((task) => !task.completed);
   updateIds(incompleteTasks);
 

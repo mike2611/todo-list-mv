@@ -1,5 +1,6 @@
 import './style.css';
-import { updateIds, getArrayLocal } from './crud.js';
+import { updateIds } from './crud.js';
+import localStorage from './localStorage';
 
 function getDragAfterElement(container, y) {
   const draggableElements = [...container.querySelectorAll('.tasks:not(.dragging)')];
@@ -25,7 +26,7 @@ export default function addDrag() {
 
     taskElement.addEventListener('dragend', () => {
       taskElement.classList.remove('dragging');
-      const arrTasks = getArrayLocal();
+      const arrTasks = localStorage();
       const orderArray = [];
       const checks = document.querySelectorAll('.checks');
       checks.forEach((check) => {

@@ -77,26 +77,39 @@ function changeIcon() {
   }
 }
 
+function editingInput() {
+  const editingTask = document.querySelector('.editing');
+  const inputEdit = editingTask.querySelector('.edit-task');
+  inputEdit.disabled = false;
+  const index = editingTask.querySelector('.checks').id - 1;
+
+  const arrTasks = getArrayLocal();
+  if (inputEdit.value !== undefined && inputEdit.value !== '') {
+    arrTasks[index].description = inputEdit.value;
+  }
+  editingTask.classList.remove('editing');
+  inputEdit.disabled = true;
+  getStatusTasks(arrTasks);
+  changeIcon();
+}
+
 function editTask() {
   const inputTasks = document.querySelectorAll('.edit-task');
   const editingTask = document.querySelector('.editing');
-  const inputTask = editingTask.querySelector('.edit-task');
-  inputTask.disabled = false;
-  const index = editingTask.querySelector('.checks').id - 1;
+  const inputEdit = editingTask.querySelector('.edit-task');
+  inputEdit.disabled = false;
 
   inputTasks.forEach((input) => {
     input.addEventListener('blur', () => {
-      const arrTasks = getArrayLocal();
-      if (inputTask.value !== undefined) {
-        arrTasks[index].description = inputTask.value;
-      }
-      editingTask.classList.remove('editing');
-      inputTask.disabled = true;
-      getStatusTasks(arrTasks);
-      changeIcon();
+      editingInput();
     });
-    inputTask.focus();
-    inputTask.setSelectionRange(inputTask.value.length, inputTask.value.length);
+    input.addEventListener('keyup', (e) => {
+      if (e.keyCode === 13 && inputEdit.value !== '') {
+        editingInput();
+      }
+    });
+    inputEdit.focus();
+    inputEdit.setSelectionRange(inputEdit.value.length, inputEdit.value.length);
   });
 }
 

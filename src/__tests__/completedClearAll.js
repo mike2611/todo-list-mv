@@ -1,4 +1,6 @@
+import { deleteCompleted } from '../crud.js';
 import { changeStatus } from '../statusTasks.js';
+import utilDeleteCompleted from '../utils/utilDeleteCompleted.js';
 
 jest.mock('../localStorage');
 
@@ -54,7 +56,25 @@ describe('Change Status', () => {
 });
 
 describe('Clear Completed', () => {
-  test('Happy Path Clear Completed', () => {
-
+  test('Happy Path Clear Delete LocalStorage', () => {
+    expect(utilDeleteCompleted()).toEqual([task1, task2]);
+  });
+  test('Happy Path Clear Delete DOM', () => {
+    document.body.innerHTML = `<ul id="list">
+      <li class="editing">
+        <div class  = "d-flex-between">
+        <input type="checkbox" class="checks" id="3" value="3">
+        <input type="text" value="task3" class="edit-task" disabled>
+        </div> 
+        <button class="delete-button task-buttons d-none">
+          <i class="bi bi-trash"></i>
+        </button>
+      </li>
+    </ul>`;
+    const check = document.querySelector('.checks');
+    check.checked = true;
+    utilDeleteCompleted();
+    const ul = document.querySelector('#list');
+    expect(ul.childElementCount).toBe(0);
   });
 });

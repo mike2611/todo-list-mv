@@ -2,6 +2,7 @@ import { getStatusTasks } from './statusTasks.js';
 import localStorage from './localStorage.js';
 import utilDelete from './utils/utilDelete.js';
 import utilEdit from './utils/utilEdit.js';
+import utilDeleteCompleted from './utils/utilDeleteCompleted.js';
 
 class Task {
   constructor(ind = 0, des = '') {
@@ -98,15 +99,5 @@ export function editBtns() {
 }
 
 export function deleteCompleted() {
-  const arrTasks = localStorage();
-  const incompleteTasks = arrTasks.filter((task) => !task.completed);
-  updateIds(incompleteTasks);
-
-  const ul = document.getElementById('list');
-  const checks = document.querySelectorAll('.checks');
-  checks.forEach((check) => {
-    if (check.checked) {
-      ul.removeChild(check.parentNode.parentNode);
-    }
-  });
+  updateIds(utilDeleteCompleted());
 }

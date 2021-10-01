@@ -1,4 +1,3 @@
-import { deleteCompleted } from '../crud.js';
 import { changeStatus } from '../statusTasks.js';
 import utilDeleteCompleted from '../utils/utilDeleteCompleted.js';
 

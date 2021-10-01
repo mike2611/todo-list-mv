@@ -3,15 +3,16 @@ import utilEdit from '../utils/utilEdit.js';
 jest.mock('../localStorage');
 
 class Task {
-  constructor(ind = 0, des = '') {
+  constructor(ind = 0, des = '', com = false) {
     this.index = ind;
     this.description = des;
-    this.completed = false;
+    this.completed = com;
   }
 }
 
 const task1 = new Task(1, 'task1');
 const task2 = new Task(2, 'taskEdit');
+const task3 = new Task(3, 'task3', true);
 
 describe('Edit a task', () => {
   test('Happy Path Return Array', () => {
@@ -30,7 +31,7 @@ describe('Edit a task', () => {
     const editingTask = document.querySelector('.editing');
     const inputTask = editingTask.querySelector('.edit-task');
 
-    expect(utilEdit(inputTask, editingTask)).toEqual([task1, task2]);
+    expect(utilEdit(inputTask, editingTask)).toEqual([task1, task2, task3]);
   });
 
   test('Happy Path DOM manipulation', () => {

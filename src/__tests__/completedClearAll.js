@@ -12,6 +12,7 @@ class Task {
 
 const task1 = new Task(1, 'task1');
 const task2 = new Task(2, 'task2');
+const task3 = new Task(3, 'task3', true);
 const task1True = new Task(1, 'task1', true);
 const task2True = new Task(2, 'task2', true);
 
@@ -31,7 +32,7 @@ describe('Change Status', () => {
 
     const check = document.querySelector('.checks');
     check.checked = true;
-    expect(changeStatus(check, check.id)).toEqual([task1, task2True]);
+    expect(changeStatus(check, check.id)).toEqual([task1, task2True, task3]);
   });
   test('Happy Path Change Status 2', () => {
     document.body.innerHTML = `<ul id="list">
@@ -48,7 +49,7 @@ describe('Change Status', () => {
     const check = document.querySelector('.checks');
     check.checked = true;
 
-    expect(changeStatus(check, check.id)).toEqual([task1True, task2]);
+    expect(changeStatus(check, check.id)).toEqual([task1True, task2, task3]);
   });
 });
 

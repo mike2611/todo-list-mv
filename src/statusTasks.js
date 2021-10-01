@@ -1,3 +1,5 @@
+import localStorage from './localStorage.js';
+
 let arrTasks = [];
 
 export function saveStatus() {
@@ -19,22 +21,23 @@ function changeStyle(check) {
   }
 }
 
-export function changeStatus(check) {
+export function changeStatus(check, index) {
+  const arrTasks = localStorage();
   if (check.checked) {
-    arrTasks[check.id - 1].completed = true;
+    arrTasks[index - 1].completed = true;
   } else {
-    arrTasks[check.id - 1].completed = false;
+    arrTasks[index - 1].completed = false;
   }
   return arrTasks;
 }
 
 function changeSaveStatus(check) {
-  changeStatus(check);
   changeStyle(check);
+  arrTasks = changeStatus(check, check.id);
   saveStatus();
 }
 
-export function checkStatus() {
+function checkStatus() {
   if (JSON.parse(window.localStorage.getItem('tasks'))) {
     arrTasks = JSON.parse(window.localStorage.getItem('tasks'));
     arrTasks.forEach((task) => {

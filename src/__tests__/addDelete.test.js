@@ -1,35 +1,36 @@
 import { addTask } from '../crud.js';
-import utilDelete from '../utilDelete.js';
-import utilPopulate from '../utilPopulate.js';
+import utilDelete from '../utils/utilDelete.js';
+import utilPopulate from '../utils/utilPopulate.js';
 
 jest.mock('../localStorage');
 
 class Task {
-  constructor(ind = 0, des = '') {
+  constructor(ind = 0, des = '', com = false) {
     this.index = ind;
     this.description = des;
-    this.completed = false;
+    this.completed = com;
   }
 }
 
 const task1 = new Task(1, 'task1');
 const task2 = new Task(2, 'task2');
-const task3 = new Task(3, 'task3');
+const task3 = new Task(3, 'task3', true);
+const task4 = new Task(4, 'task4');
 
 describe('Testing add', () => {
   test('Add new task, Should return three task', () => {
     document.body.innerHTML = `<div>
       <input type="text" name="input-task" id="input-task" required maxlength="60">
     </div>`;
-    document.querySelector('#input-task').value = 'task3';
-    expect(addTask()).toEqual([task1, task2, task3]);
+    document.querySelector('#input-task').value = 'task4';
+    expect(addTask()).toEqual([task1, task2, task3, task4]);
   });
   test('Add new task, Length should be three', () => {
     document.body.innerHTML = `<div>
       <input type="text" name="input-task" id="input-task" required maxlength="60">
     </div>`;
-    document.querySelector('#input-task').value = 'task3';
-    expect(addTask().length).toBe(3);
+    document.querySelector('#input-task').value = 'task4';
+    expect(addTask().length).toBe(4);
   });
 });
 
@@ -47,7 +48,7 @@ describe('Testing delete', () => {
       </li>
     </ul>`;
     const deleteBtn = document.querySelector('.delete-button');
-    expect(utilDelete(deleteBtn)).toEqual([task1]);
+    expect(utilDelete(deleteBtn)).toEqual([task1, task3]);
   });
   test('Delete task , Length should be one', () => {
     document.body.innerHTML = `<ul id="list">
@@ -62,7 +63,7 @@ describe('Testing delete', () => {
       </li>
     </ul>`;
     const deleteBtn = document.querySelector('.delete-button');
-    expect(utilDelete(deleteBtn).length).toBe(1);
+    expect(utilDelete(deleteBtn).length).toBe(2);
   });
 });
 

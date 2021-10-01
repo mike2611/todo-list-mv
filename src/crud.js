@@ -1,6 +1,8 @@
 import { getStatusTasks } from './statusTasks.js';
 import localStorage from './localStorage.js';
-import utilDelete from './utilDelete.js';
+import utilDelete from './utils/utilDelete.js';
+import utilEdit from './utils/utilEdit.js';
+import utilDeleteCompleted from './utils/utilDeleteCompleted.js';
 
 class Task {
   constructor(ind = 0, des = '') {
@@ -70,17 +72,10 @@ function editTask() {
   const editingTask = document.querySelector('.editing');
   const inputTask = editingTask.querySelector('.edit-task');
   inputTask.disabled = false;
-  const index = editingTask.querySelector('.checks').id - 1;
 
   inputTasks.forEach((input) => {
     input.addEventListener('blur', () => {
-      const arrTasks = localStorage();
-      if (inputTask.value !== undefined) {
-        arrTasks[index].description = inputTask.value;
-      }
-      editingTask.classList.remove('editing');
-      inputTask.disabled = true;
-      getStatusTasks(arrTasks);
+      getStatusTasks(utilEdit(inputTask, editingTask));
       changeIcon();
     });
     inputTask.focus();
@@ -104,15 +99,5 @@ export function editBtns() {
 }
 
 export function deleteCompleted() {
-  const arrTasks = localStorage();
-  const incompleteTasks = arrTasks.filter((task) => !task.completed);
-  updateIds(incompleteTasks);
-
-  const ul = document.getElementById('list');
-  const checks = document.querySelectorAll('.checks');
-  checks.forEach((check) => {
-    if (check.checked) {
-      ul.removeChild(check.parentNode.parentNode);
-    }
-  });
+  updateIds(utilDeleteCompleted());
 }

@@ -67,7 +67,7 @@ function changeIcon() {
   }
 }
 
-function editTask() {
+export function editTask() {
   const inputTasks = document.querySelectorAll('.edit-task');
   const editingTask = document.querySelector('.editing');
   const inputTask = editingTask.querySelector('.edit-task');

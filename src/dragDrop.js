@@ -15,39 +15,52 @@ function getDragAfterElement(container, y) {
   }, { offset: Number.NEGATIVE_INFINITY }).element;
 }
 
+function start(element) {
+  element.classList.add('dragging');
+}
+
+function end(element) {
+  element.classList.remove('dragging');
+  const arrTasks = localStorage();
+  const orderArray = [];
+  const checks = document.querySelectorAll('.checks');
+  checks.forEach((check) => {
+    for (let j = 0; j < arrTasks.length; j += 1) {
+      if (parseInt(check.id, 10) === parseInt(arrTasks[j].index, 10)) {
+        orderArray.push(arrTasks[j]);
+      }
+    }
+  });
+  updateIds(orderArray);
+}
+
+function over(event, container) {
+  event.preventDefault();
+  const y = event.clientY || event.touches[0].clientY;
+  const afterElement = getDragAfterElement(container, y);
+  const dragging = document.querySelector('.dragging');
+  if (afterElement == null || afterElement === undefined) {
+    container.appendChild(dragging);
+  } else {
+    container.insertBefore(dragging, afterElement);
+  }
+}
+
 export default function addDrag() {
   const taskContainer = document.querySelector('#list');
   const taskElements = taskContainer.querySelectorAll('.tasks');
 
   taskElements.forEach((taskElement) => {
     taskElement.addEventListener('dragstart', () => {
-      taskElement.classList.add('dragging');
+      start(taskElement);
     });
 
     taskElement.addEventListener('dragend', () => {
-      taskElement.classList.remove('dragging');
-      const arrTasks = localStorage();
-      const orderArray = [];
-      const checks = document.querySelectorAll('.checks');
-      checks.forEach((check) => {
-        for (let j = 0; j < arrTasks.length; j += 1) {
-          if (parseInt(check.id, 10) === parseInt(arrTasks[j].index, 10)) {
-            orderArray.push(arrTasks[j]);
-          }
-        }
-      });
-      updateIds(orderArray);
+      end(taskElement);
     });
   });
 
   taskContainer.addEventListener('dragover', (event) => {
-    event.preventDefault();
-    const afterElement = getDragAfterElement(taskContainer, event.clientY);
-    const dragging = document.querySelector('.dragging');
-    if (afterElement == null || afterElement === undefined) {
-      taskContainer.appendChild(dragging);
-    } else {
-      taskContainer.insertBefore(dragging, afterElement);
-    }
+    over(event, taskContainer);
   });
 }

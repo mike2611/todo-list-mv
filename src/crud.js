@@ -78,6 +78,12 @@ function editTask() {
       getStatusTasks(utilEdit(inputTask, editingTask));
       changeIcon();
     });
+    inputTask.addEventListener('keyup', (e) => {
+      if (e.keyCode === 13 && inputTask.value !== '') {
+        getStatusTasks(utilEdit(inputTask, editingTask));
+        changeIcon();
+      }
+    });
     inputTask.focus();
     inputTask.setSelectionRange(inputTask.value.length, inputTask.value.length);
   });

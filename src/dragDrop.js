@@ -55,12 +55,23 @@ export default function addDrag() {
       start(taskElement);
     });
 
+    taskElement.addEventListener('touchstart', () => {
+      start(taskElement);
+    });
+
     taskElement.addEventListener('dragend', () => {
+      end(taskElement);
+    });
+
+    taskElement.addEventListener('touchend', () => {
       end(taskElement);
     });
   });
 
   taskContainer.addEventListener('dragover', (event) => {
+    over(event, taskContainer);
+  });
+  taskContainer.addEventListener('touchmove', (event) => {
     over(event, taskContainer);
   });
 }

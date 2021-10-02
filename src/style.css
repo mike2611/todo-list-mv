@@ -12,6 +12,7 @@ section {
 
 #list-frame {
   background-color: white;
+  min-width: 250px;
   width: 50vw;
   max-width: 500px;
   box-shadow: 5px 4px 6px #8888885d;

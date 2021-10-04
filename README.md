@@ -2,7 +2,16 @@
 
 # ToDo-list
 
+> This project is a to-do list.
 
+
+## How it works?
+
+- Add a new task.
+- Delete a task.
+- Mark a selected task completed.
+- Delete all completed tasks.
+- Drag-and-drop functionality to rearrange tasks.
 
 ## Built with
 

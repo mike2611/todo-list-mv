@@ -4,8 +4,15 @@
 
 > This project is a to-do list.
 
+## Desktop 💻
+![screenshot](images/desktopImage.png)
 
-## How it works?
+
+## Mobile 📱
+![screenshot](images/mobileImage.png)
+
+
+## Features
 
 - Add a new task.
 - Delete a task.

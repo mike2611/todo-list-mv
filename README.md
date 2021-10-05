@@ -2,7 +2,23 @@
 
 # ToDo-list
 
+> This project is a to-do list.
 
+## Desktop 💻
+![screenshot](images/desktopImage.png)
+
+
+## Mobile 📱
+![screenshot](images/mobileImage.png)
+
+
+## Features
+
+- Add a new task.
+- Delete a task.
+- Mark a selected task completed.
+- Delete all completed tasks.
+- Drag-and-drop functionality to rearrange tasks.
 
 ## Built with
 
